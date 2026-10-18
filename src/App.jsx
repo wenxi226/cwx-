@@ -3,7 +3,8 @@ import { categories, profile, projects, skills } from './data';
 import HeroParticles from './components/HeroParticles';
 import AnimatedCharacter from './components/AnimatedCharacter';
 
-const asset = value => `${import.meta.env.BASE_URL}${value.replace(/^\/+/, '')}`;
+const publicBase = import.meta.env.BASE_URL === '/cwx-/' ? `${import.meta.env.BASE_URL}public/` : import.meta.env.BASE_URL;
+const asset = value => `${publicBase}${value.replace(/^\/+/, '')}`;
 
 const nav = [
   ['home', 'Home', '首页'], ['about', 'About', '关于我'], ['skills', 'Skills', '技能系统'],

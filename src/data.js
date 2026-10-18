@@ -29,7 +29,8 @@ export const categories = [
   { id: 'video', label: '视频影像', en: 'MOTION' },
 ];
 
-const withBase = value => value?.startsWith('/') ? `${import.meta.env.BASE_URL}${value.slice(1)}` : value;
+const publicBase = import.meta.env.BASE_URL === '/cwx-/' ? `${import.meta.env.BASE_URL}public/` : import.meta.env.BASE_URL;
+const withBase = value => value?.startsWith('/') ? `${publicBase}${value.slice(1)}` : value;
 
 export const projects = materialProjects.map(project => ({
   ...project,
