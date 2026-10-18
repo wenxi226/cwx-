@@ -3,6 +3,8 @@ import { categories, profile, projects, skills } from './data';
 import HeroParticles from './components/HeroParticles';
 import AnimatedCharacter from './components/AnimatedCharacter';
 
+const asset = value => `${import.meta.env.BASE_URL}${value.replace(/^\/+/, '')}`;
+
 const nav = [
   ['home', 'Home', '首页'], ['about', 'About', '关于我'], ['skills', 'Skills', '技能系统'],
   ['work', 'Works', '精选作品'], ['contact', 'Contact', '联系我'],
@@ -65,7 +67,7 @@ function Hero() {
   }
   return <section ref={hero} className="hero" id="home" aria-labelledby="hero-title">
     <div className="hero-band" />
-    <video ref={video} className={`hero-video ${videoReady ? 'ready' : ''}`} src="/media/hero-motion.webm" autoPlay muted loop playsInline aria-hidden="true" onLoadedData={() => { setVideoReady(true); if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) video.current?.pause(); }} onError={() => setVideoReady(false)} />
+    <video ref={video} className={`hero-video ${videoReady ? 'ready' : ''}`} src={asset('/media/hero-motion.webm')} autoPlay muted loop playsInline aria-hidden="true" onLoadedData={() => { setVideoReady(true); if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) video.current?.pause(); }} onError={() => setVideoReady(false)} />
     <HeroParticles heroRef={hero} enabled={motionEnabled} />
     <div className="hero-top"><span className="mono"><i className="slash-mark" /> INDEPENDENT VISUAL CREATOR</span><a href="#contact" className="top-contact">聊聊你的想法 <Arrow diagonal /></a></div>
     <div className="hero-content"><div className="hero-kicker mono">Hi, I’M</div><h1 id="hero-title">陈文希<span className="name-cross">✳</span></h1><div className="hero-role"><span>潮玩摄影师</span><b>/</b><span className="mono">DESIGNER TOY PHOTOGRAPHER</span></div><h2 className="hero-statement">LIMITLESS<br /><span>VISUAL STORIES.</span></h2><p className="hero-description">用镜头捕捉玩具的灵魂，<br />让每一个小世界，都有无限可能。</p><a href="#work" className="primary-button mono">EXPLORE MY WORK <span><Arrow /></span></a></div>
@@ -86,7 +88,7 @@ function Ticker() {
 function About() {
   return <section id="about" className="about section-pad" aria-labelledby="about-title">
     <SectionHeading number="01" label="BEHIND THE LENS" title={<span id="about-title">不止记录，<br />更是创造。</span>}><span className="section-corner mono">CURIOUS BY NATURE.<br />CREATIVE BY CHOICE. <span>↙</span></span></SectionHeading>
-    <div className="about-grid"><div className="portrait-panel portrait-panel--photographer"><div className="portrait-top mono">WXC. / PERSONAL PROFILE <span>+</span></div><img src="/media/photographer-portrait.webp" alt="陈文希戴眼镜、身穿灰色连帽衫的半身肖像" loading="lazy" width="2700" height="4283" /><div className="portrait-stamp mono">CREATOR<br /><b>01</b></div><div className="portrait-caption"><span>陈文希 · 潮玩摄影师</span><span className="mono">FIG. 01 ↗</span></div></div>
+    <div className="about-grid"><div className="portrait-panel portrait-panel--photographer"><div className="portrait-top mono">WXC. / PERSONAL PROFILE <span>+</span></div><img src={asset('/media/photographer-portrait.webp')} alt="陈文希戴眼镜、身穿灰色连帽衫的半身肖像" loading="lazy" width="2700" height="4283" /><div className="portrait-stamp mono">CREATOR<br /><b>01</b></div><div className="portrait-caption"><span>陈文希 · 潮玩摄影师</span><span className="mono">FIG. 01 ↗</span></div></div>
       <div className="about-copy"><div className="about-name"><h3>{profile.name}</h3><span className="mono">{profile.englishName}</span><span className="about-role">潮玩摄影师 / 视觉创作者</span></div><p>{profile.intro}</p><p>{profile.description}</p><div className="experience"><div className="small-section-label mono">EXPERIENCE <span>工作 / 项目经历</span></div>{profile.experiences.map(item => <div className="experience-row" key={item.stage}><span className="mono">/{item.stage}</span><div><h4>{item.title}</h4><p>{item.detail}</p></div><Arrow diagonal /></div>)}</div><div className="about-contact"><a href={`mailto:${profile.email}`}><span className="mono">EMAIL</span>{profile.email}<Arrow diagonal /></a><a href="#contact"><span className="mono">WECHAT</span>{profile.wechat}<Arrow diagonal /></a></div></div>
     </div>
   </section>;

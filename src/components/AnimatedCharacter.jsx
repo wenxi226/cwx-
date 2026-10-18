@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import './AnimatedCharacter.css';
 
-const image = '/media/hero-character.webp';
+const image = `${import.meta.env.BASE_URL}media/hero-character.webp`;
 const circuits = [
   'M178 180 214 160 243 162 267 139 302 139 319 125 374 125',
   'M221 193 248 177 287 177 305 157 345 157 365 139 420 139',
