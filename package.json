@@ -1,0 +1,22 @@
+{
+  "name": "wenxi-portfolio",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "packageManager": "pnpm@11.25.0",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 5173 --strictPort",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4173 --strictPort"
+  },
+  "dependencies": {
+    "@react-three/fiber": "^9.8.1",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "vite": "7.3.1"
+  }
+}
+
