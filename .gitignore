@@ -2,11 +2,12 @@ node_modules/
 dist/
 .DS_Store
 *.log
+/video-browser-check.*.json
 .env*
 .preview.log
 public/portfolio-assets/originals/
 public/portfolio-assets/videos-web/
 public/portfolio-assets/videos-source/
+public/portfolio-assets/videos/
 public/portfolio-assets/images/
 public/media/photographer-portrait.jpg
-

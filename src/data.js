@@ -38,5 +38,5 @@ export const projects = materialProjects.map(project => ({
   images: project.images?.map(withBase),
   originalImages: project.originalImages?.map(withBase),
   video: withBase(project.video),
+  poster: withBase(project.poster),
 }));
-

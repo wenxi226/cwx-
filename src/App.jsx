@@ -3,6 +3,7 @@ import { categories, profile, projects, skills } from './data';
 import HeroParticles from './components/HeroParticles';
 import AnimatedCharacter from './components/AnimatedCharacter';
 import LoopGallery from './components/LoopGallery';
+import ProjectVideo from './components/ProjectVideo';
 
 const publicBase = import.meta.env.BASE_URL === '/cwx-/' ? `${import.meta.env.BASE_URL}public/` : import.meta.env.BASE_URL;
 const asset = value => `${publicBase}${value.replace(/^\/+/, '')}`;
@@ -119,8 +120,8 @@ function Skills() {
 
 function MaterialGallery({ project, dialog = false, onOpenOriginal }) {
   if (project.category === 'video') {
-    if (dialog) return <video className="dialog-video" src={project.video} controls playsInline preload="metadata" aria-label={`${project.title}视频作品`} />;
-    return <div className="artwork artwork-material-video"><div className="material-video-grid" aria-hidden="true" /><div className="artwork-type">MOTION<br />ARCHIVE.</div><div className="material-video-mark"><span>▶</span><small className="mono">VIDEO / {project.id.replace('material-video-', '')}</small></div><div className="art-caption mono">{project.subtitle} <span>2026</span></div></div>;
+    if (dialog) return <ProjectVideo key={project.id} project={project} />;
+    return <div className="artwork artwork-material-video"><div className="material-video-grid" aria-hidden="true" />{project.poster && <img className="material-video-poster" src={project.poster} alt={`${project.title}视频封面`} loading="lazy" decoding="async" />}<div className="artwork-type">MOTION<br />ARCHIVE.</div><div className="material-video-mark"><span>▶</span><small className="mono">VIDEO / {project.id.replace('material-video-', '')}</small></div><div className="art-caption mono">{project.subtitle} <span>2026</span></div></div>;
   }
   if (!dialog) return <div className="material-gallery">{project.images.map((image, index) => <img key={image} src={image} alt={`${project.title}，第 ${index + 1} 张`} loading={index > 3 ? 'lazy' : 'eager'} />)}<div className="material-gallery-count mono">{project.images.length} IMAGES <span>↗</span></div></div>;
   return <MaterialGalleryViewer project={project} onOpenOriginal={onOpenOriginal} />;

@@ -1,4 +1,3 @@
-// Generated for the publishable portfolio asset set.
 export const materialProjects = [
   {
     "id": "material-images-001",
@@ -1044,10 +1043,13 @@ export const materialProjects = [
     "subtitle": "ai动画 · 视频作品",
     "category": "video",
     "layout": "material-video",
-    "video": "/portfolio-assets/videos/001-migo-%E6%80%AA%E8%AF%9E%E9%A9%AC%E6%88%8F%E5%9B%A2.mp4",
+    "video": "/portfolio-assets/videos-optimized/001.mp4",
     "year": "2026",
     "folder": "视频类/ai动画/MIGO-怪诞马戏团.mov",
-    "description": "来自素材库「视频类 / ai动画」的最新视频作品。"
+    "description": "来自素材库「视频类 / ai动画」的最新视频作品。",
+    "poster": "/portfolio-assets/videos-optimized/001.webp",
+    "videoWidth": 854,
+    "videoHeight": 1280
   },
   {
     "id": "material-video-002",
@@ -1055,10 +1057,13 @@ export const materialProjects = [
     "subtitle": "ai动画 · 视频作品",
     "category": "video",
     "layout": "material-video",
-    "video": "/portfolio-assets/videos/002-nana400.mp4",
+    "video": "/portfolio-assets/videos-optimized/002.mp4",
     "year": "2026",
     "folder": "视频类/ai动画/nana400%.mp4",
-    "description": "来自素材库「视频类 / ai动画」的最新视频作品。"
+    "description": "来自素材库「视频类 / ai动画」的最新视频作品。",
+    "poster": "/portfolio-assets/videos-optimized/002.webp",
+    "videoWidth": 854,
+    "videoHeight": 1280
   },
   {
     "id": "material-video-003",
@@ -1066,10 +1071,13 @@ export const materialProjects = [
     "subtitle": "ai动画 · 视频作品",
     "category": "video",
     "layout": "material-video",
-    "video": "/portfolio-assets/videos/003-%E4%B8%A7%E4%B8%A7.mp4",
+    "video": "/portfolio-assets/videos-optimized/003.mp4",
     "year": "2026",
     "folder": "视频类/ai动画/丧丧.mp4",
-    "description": "来自素材库「视频类 / ai动画」的最新视频作品。"
+    "description": "来自素材库「视频类 / ai动画」的最新视频作品。",
+    "poster": "/portfolio-assets/videos-optimized/003.webp",
+    "videoWidth": 956,
+    "videoHeight": 1280
   },
   {
     "id": "material-video-004",
@@ -1077,10 +1085,13 @@ export const materialProjects = [
     "subtitle": "ai动画 · 视频作品",
     "category": "video",
     "layout": "material-video",
-    "video": "/portfolio-assets/videos/004-%E5%93%A5%E7%89%B9%E6%B4%9B%E4%B8%BD%E5%A1%94v2.mp4",
+    "video": "/portfolio-assets/videos-optimized/004.mp4",
     "year": "2026",
     "folder": "视频类/ai动画/哥特洛丽塔V2.mp4",
-    "description": "来自素材库「视频类 / ai动画」的最新视频作品。"
+    "description": "来自素材库「视频类 / ai动画」的最新视频作品。",
+    "poster": "/portfolio-assets/videos-optimized/004.webp",
+    "videoWidth": 854,
+    "videoHeight": 1280
   },
   {
     "id": "material-video-005",
@@ -1088,10 +1099,13 @@ export const materialProjects = [
     "subtitle": "ai动画 · 视频作品",
     "category": "video",
     "layout": "material-video",
-    "video": "/portfolio-assets/videos/005-%E5%96%B3%E5%96%B3-%E6%9C%AC%E5%BF%83%E5%B7%A5%E5%9D%8A.mp4",
+    "video": "/portfolio-assets/videos-optimized/005.mp4",
     "year": "2026",
     "folder": "视频类/ai动画/喳喳-本心工坊.mp4",
-    "description": "来自素材库「视频类 / ai动画」的最新视频作品。"
+    "description": "来自素材库「视频类 / ai动画」的最新视频作品。",
+    "poster": "/portfolio-assets/videos-optimized/005.webp",
+    "videoWidth": 854,
+    "videoHeight": 1280
   },
   {
     "id": "material-video-006",
@@ -1099,10 +1113,13 @@ export const materialProjects = [
     "subtitle": "ai动画 · 视频作品",
     "category": "video",
     "layout": "material-video",
-    "video": "/portfolio-assets/videos/006-%E5%98%BF%E7%B1%B3-%E7%AB%A5%E5%BF%83baby.mp4",
+    "video": "/portfolio-assets/videos-optimized/006.mp4",
     "year": "2026",
     "folder": "视频类/ai动画/嘿米-童心baby.mp4",
-    "description": "来自素材库「视频类 / ai动画」的最新视频作品。"
+    "description": "来自素材库「视频类 / ai动画」的最新视频作品。",
+    "poster": "/portfolio-assets/videos-optimized/006.webp",
+    "videoWidth": 960,
+    "videoHeight": 1280
   },
   {
     "id": "material-video-007",
@@ -1110,10 +1127,13 @@ export const materialProjects = [
     "subtitle": "ai动画 · 视频作品",
     "category": "video",
     "layout": "material-video",
-    "video": "/portfolio-assets/videos/007-%E5%A8%83%E4%B8%89%E5%B2%81-%E4%B8%8A%E5%AD%A6%E8%AE%B0%E8%83%8C%E5%8C%85.mp4",
+    "video": "/portfolio-assets/videos-optimized/007.mp4",
     "year": "2026",
     "folder": "视频类/ai动画/娃三岁-上学记背包.mp4",
-    "description": "来自素材库「视频类 / ai动画」的最新视频作品。"
+    "description": "来自素材库「视频类 / ai动画」的最新视频作品。",
+    "poster": "/portfolio-assets/videos-optimized/007.webp",
+    "videoWidth": 1280,
+    "videoHeight": 720
   },
   {
     "id": "material-video-008",
@@ -1121,10 +1141,13 @@ export const materialProjects = [
     "subtitle": "ai动画 · 视频作品",
     "category": "video",
     "layout": "material-video",
-    "video": "/portfolio-assets/videos/008-%E5%A8%83%E4%B8%89%E5%B2%81-%E5%B0%8F%E8%8A%B1%E5%9B%A2%E5%AD%90.mp4",
+    "video": "/portfolio-assets/videos-optimized/008.mp4",
     "year": "2026",
     "folder": "视频类/ai动画/娃三岁-小花团子.mp4",
-    "description": "来自素材库「视频类 / ai动画」的最新视频作品。"
+    "description": "来自素材库「视频类 / ai动画」的最新视频作品。",
+    "poster": "/portfolio-assets/videos-optimized/008.webp",
+    "videoWidth": 1280,
+    "videoHeight": 720
   },
   {
     "id": "material-video-009",
@@ -1132,10 +1155,13 @@ export const materialProjects = [
     "subtitle": "ai动画 · 视频作品",
     "category": "video",
     "layout": "material-video",
-    "video": "/portfolio-assets/videos/009-%E5%A8%83%E4%B8%89%E5%B2%81-%E6%81%90%E6%80%96%E5%B0%8F%E4%B8%91%E4%B8%80%E4%BB%A3.mp4",
+    "video": "/portfolio-assets/videos-optimized/009.mp4",
     "year": "2026",
     "folder": "视频类/ai动画/娃三岁-恐怖小丑一代.mp4",
-    "description": "来自素材库「视频类 / ai动画」的最新视频作品。"
+    "description": "来自素材库「视频类 / ai动画」的最新视频作品。",
+    "poster": "/portfolio-assets/videos-optimized/009.webp",
+    "videoWidth": 1280,
+    "videoHeight": 720
   },
   {
     "id": "material-video-010",
@@ -1143,10 +1169,13 @@ export const materialProjects = [
     "subtitle": "ai动画 · 视频作品",
     "category": "video",
     "layout": "material-video",
-    "video": "/portfolio-assets/videos/010-%E6%BB%91%E6%9D%BF%E5%B0%91%E5%B9%B4.mp4",
+    "video": "/portfolio-assets/videos-optimized/010.mp4",
     "year": "2026",
     "folder": "视频类/ai动画/滑板少年.mp4",
-    "description": "来自素材库「视频类 / ai动画」的最新视频作品。"
+    "description": "来自素材库「视频类 / ai动画」的最新视频作品。",
+    "poster": "/portfolio-assets/videos-optimized/010.webp",
+    "videoWidth": 1280,
+    "videoHeight": 720
   },
   {
     "id": "material-video-011",
@@ -1154,10 +1183,13 @@ export const materialProjects = [
     "subtitle": "品牌结尾 · 视频作品",
     "category": "video",
     "layout": "material-video",
-    "video": "/portfolio-assets/videos/011-16-9.mp4",
+    "video": "/portfolio-assets/videos-optimized/011.mp4",
     "year": "2026",
     "folder": "视频类/品牌结尾/16：9.mp4",
-    "description": "来自素材库「视频类 / 品牌结尾」的最新视频作品。"
+    "description": "来自素材库「视频类 / 品牌结尾」的最新视频作品。",
+    "poster": "/portfolio-assets/videos-optimized/011.webp",
+    "videoWidth": 1280,
+    "videoHeight": 720
   },
   {
     "id": "material-video-012",
@@ -1165,10 +1197,13 @@ export const materialProjects = [
     "subtitle": "品牌结尾 · 视频作品",
     "category": "video",
     "layout": "material-video",
-    "video": "/portfolio-assets/videos/012-3-4.mp4",
+    "video": "/portfolio-assets/videos-optimized/012.mp4",
     "year": "2026",
     "folder": "视频类/品牌结尾/3：4.mp4",
-    "description": "来自素材库「视频类 / 品牌结尾」的最新视频作品。"
+    "description": "来自素材库「视频类 / 品牌结尾」的最新视频作品。",
+    "poster": "/portfolio-assets/videos-optimized/012.webp",
+    "videoWidth": 960,
+    "videoHeight": 1280
   },
   {
     "id": "material-video-013",
@@ -1176,10 +1211,13 @@ export const materialProjects = [
     "subtitle": "品牌结尾 · 视频作品",
     "category": "video",
     "layout": "material-video",
-    "video": "/portfolio-assets/videos/013-9-16.mp4",
+    "video": "/portfolio-assets/videos-optimized/013.mp4",
     "year": "2026",
     "folder": "视频类/品牌结尾/9：16.mp4",
-    "description": "来自素材库「视频类 / 品牌结尾」的最新视频作品。"
+    "description": "来自素材库「视频类 / 品牌结尾」的最新视频作品。",
+    "poster": "/portfolio-assets/videos-optimized/013.webp",
+    "videoWidth": 720,
+    "videoHeight": 1280
   },
   {
     "id": "material-video-014",
@@ -1187,10 +1225,13 @@ export const materialProjects = [
     "subtitle": "实拍展示 · 视频作品",
     "category": "video",
     "layout": "material-video",
-    "video": "/portfolio-assets/videos/014-%E5%96%B3%E5%96%B3-%E8%BF%B7%E9%9B%BE%E5%8F%A4%E5%A0%A1.mp4",
+    "video": "/portfolio-assets/videos-optimized/014.mp4",
     "year": "2026",
     "folder": "视频类/实拍展示/喳喳-迷雾古堡.mp4",
-    "description": "来自素材库「视频类 / 实拍展示」的最新视频作品。"
+    "description": "来自素材库「视频类 / 实拍展示」的最新视频作品。",
+    "poster": "/portfolio-assets/videos-optimized/014.webp",
+    "videoWidth": 960,
+    "videoHeight": 1280
   },
   {
     "id": "material-video-015",
@@ -1198,10 +1239,12 @@ export const materialProjects = [
     "subtitle": "实拍展示 · 视频作品",
     "category": "video",
     "layout": "material-video",
-    "video": "/portfolio-assets/videos/015-%E5%A4%A7%E5%B0%8F%E5%A7%90-%E8%BF%BD%E5%85%89%E5%81%B6%E5%83%8F.mp4",
+    "video": "/portfolio-assets/videos-optimized/015.mp4",
     "year": "2026",
     "folder": "视频类/实拍展示/大小姐-追光偶像.mp4",
-    "description": "来自素材库「视频类 / 实拍展示」的最新视频作品。"
+    "description": "来自素材库「视频类 / 实拍展示」的最新视频作品。",
+    "poster": "/portfolio-assets/videos-optimized/015.webp",
+    "videoWidth": 960,
+    "videoHeight": 1280
   }
 ];
-

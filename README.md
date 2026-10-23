@@ -48,7 +48,11 @@ npm run preview
 
 首页及角色展示使用工作区提供的 `首页形象.jpg`，经过裁切和 WebP 优化。个人介绍区使用原样复制的 `摄影师肖像.jpg`（网站内路径为 `public/media/photographer-portrait.jpg`），通过 CSS 调整半身显示范围，保留原始五官、眼镜、肤色和衣着。工作经历已标注待补充。
 
-六张作品卡片均标注为展示样例，包装与手册版式为网页中的示例设计，未虚构客户或商业项目。视频类当前展示的是为首页制作的约 8 秒本地机动线条循环视频，后续可替换为真实摄影花絮、产品短片。
+作品区使用素材库中的真实系列。15 条作品视频使用 H.264 / AAC MP4 网页版，保留原始比例和声音，最长边 1280px、30fps；AAC 原声直接复制，PCM 音轨转换为 AAC 128kbps。原始素材不被修改。总大小由约 3.19GB 减至约 176MB。
+
+视频启用 MP4 faststart，配合托管服务的 HTTP Range 分段请求支持快速起播与进度跳转。列表只加载 WebP 封面，打开弹窗才加载视频元数据；点击播放后保留原声，支持手机内联播放。切到后台暂停，关闭弹窗停止下载并释放播放器，加载失败可重试或直接打开视频。
+
+`scripts/optimize-videos.cjs` 可重新生成视频、封面与 `public/portfolio-assets/videos-optimized/verification.json` 检查报告。安装 FFmpeg 后运行 `pnpm optimize:videos`；工具不在 PATH 时设置 `FFMPEG_BIN` / `FFPROBE_BIN`，原素材目录可用 `MATERIAL_SOURCE` 指定。脚本逐条执行完整音视频解码检查，全部完成后更新作品目录。请在重新导入素材库后执行此步骤，避免发布原始大文件。
 
 字体已保存到 `public/fonts/`，页面不依赖外部字体服务。生产页面只请求本站资源。
 
@@ -60,10 +64,9 @@ npm run preview
 - `src/components/HeroParticles.jsx`：指定参数、WebGL 支持判断、延迟加载和鼠标事件转发，不拦截首页按钮。
 - `src/components/AnimatedCharacter.jsx`：按现有角色图坐标制作的 SVG 局部遮罩、眨眼和线路光效。
 - `src/components/AnimatedCharacter.css`：角色浮动、眨眼节奏、线路流光与反光的关键帧。
-- `src/materialProjects.js`：由素材库脚本生成的作品目录，图片系列包含完整图库，视频条目保留原始文件路径。
+- `src/materialProjects.js`：作品目录，图片系列包含完整图库，视频条目指向优化后的 MP4，并记录封面与视频宽高。
 - `scripts/update-material-library.cjs`：从 `素材库/图片类` 和 `素材库/视频类` 重新生成网页资产和目录；图片生成 1800px WebP 展示副本，同时保留原始图片到 `public/portfolio-assets/originals/`，视频原文件直接复制。
 
 角色动效是现有静态图片上的网页分层合成效果。当前没有 After Effects 工程或真实逐帧角色视频；如果后续更换人物图，需要重新校准眼睛、头发和头盔线路的坐标。
 
 素材库更新不会修改原始素材目录。图片、包装和 IP 系列弹窗均使用展示副本自动缓慢轮播，点击图片后加载 `originals/` 中的原始文件，以原始比例完整显示，不做裁切；重新整理素材后运行 `node scripts/update-material-library.cjs` 即可刷新作品目录。
-
