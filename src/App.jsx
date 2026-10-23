@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { categories, profile, projects, skills } from './data';
 import HeroParticles from './components/HeroParticles';
 import AnimatedCharacter from './components/AnimatedCharacter';
+import LoopGallery from './components/LoopGallery';
 
 const publicBase = import.meta.env.BASE_URL === '/cwx-/' ? `${import.meta.env.BASE_URL}public/` : import.meta.env.BASE_URL;
 const asset = value => `${publicBase}${value.replace(/^\/+/, '')}`;
@@ -144,28 +145,8 @@ function LegacyMaterialGalleryViewer({ project, onOpenOriginal }) {
 }
 
 function MaterialGalleryViewer({ project, onOpenOriginal }) {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const [hoverIndex, setHoverIndex] = useState(null);
-  const count = project.images.length;
-  useEffect(() => {
-    if (paused || count < 2) return undefined;
-    const timer = window.setInterval(() => setActiveIndex(index => (index + 1) % count), 3800);
-    return () => window.clearInterval(timer);
-  }, [paused, count, project.id]);
-  function move(step) { setActiveIndex(index => (index + step + count) % count); }
-  return <div className="material-gallery-viewer material-gallery-viewer--stack">
-    <div className="material-gallery-stack" aria-live="polite">
-      {project.images.map((image, index) => {
-        const relative = (index - activeIndex + count) % count;
-        const isExit = relative === count - 1;
-        const visible = relative <= 3 || isExit;
-        const style = isExit ? { transform: 'translateX(-120%) rotate(-8deg) scale(.88)', opacity: 0, zIndex: 0 } : { transform: `translateX(${relative * 18}px) translateY(${relative * 8}px) rotate(${relative * 1.8}deg) scale(${1 - relative * .055})`, opacity: visible ? 1 - relative * .13 : 0, zIndex: count - relative };
-        return <button type="button" className={`material-stack-card ${hoverIndex === index ? 'is-hovered' : ''}`} style={style} key={image} onMouseEnter={() => setHoverIndex(index)} onMouseLeave={() => setHoverIndex(null)} onFocus={() => setHoverIndex(index)} onBlur={() => setHoverIndex(null)} onClick={() => onOpenOriginal(index)} aria-label={`查看${project.title}第 ${index + 1} 张原图`}><img src={hoverIndex === index ? (project.originalImages?.[index] || image) : image} alt={`${project.title}，第 ${index + 1} 张`} /></button>;
-      })}
-    </div>
-    <div className="material-gallery-toolbar"><button type="button" onClick={() => move(-1)} aria-label="上一张图片"><Arrow className="reverse" /></button><span className="mono">{String(activeIndex + 1).padStart(2, '0')} / {String(count).padStart(2, '0')} · 点击图片查看原图</span><button type="button" onClick={() => setPaused(value => !value)} aria-label={paused ? '播放图片卡片轮播' : '暂停图片卡片轮播'}>{paused ? '▶' : 'Ⅱ'}</button><button type="button" onClick={() => move(1)} aria-label="下一张图片"><Arrow /></button></div>
-  </div>;
+  const items = useMemo(() => project.images.map((src, index) => ({ id: String(index), src: project.originalImages?.[index] || src, index, label: '查看' + project.title + '第 ' + (index + 1) + ' 张原图' })), [project]);
+  return <LoopGallery key={project.id} items={items} detail onOpen={onOpenOriginal} label={project.title + '图片轮播'} />;
 }
 
 function ProjectArtwork({ project, inDialog = false, onOpenOriginal }) {
@@ -286,20 +267,21 @@ function Works() {
   useEffect(() => { if (category !== 'images') { setImageBranch('ip'); setImageSubtype('all'); } }, [category]);
   useEffect(() => { if (!lightbox) return undefined; const onKeyDown = event => { if (event.key === 'Escape') setLightbox(null); }; document.addEventListener('keydown', onKeyDown); return () => document.removeEventListener('keydown', onKeyDown); }, [lightbox]);
   function moveLightbox(step) { if (!lightbox) return; const count = lightbox.project.originalImages?.length || lightbox.project.images.length; setLightbox({ ...lightbox, index: (lightbox.index + step + count) % count }); }
-  const visible = projects.filter(project => {
+  const visible = useMemo(() => projects.filter(project => {
     if (project.category !== category) return false;
     if (category !== 'images') return true;
     if (imageBranch === 'peripheral') return project.folder.includes('图片类 / 潮玩周边');
     if (imageSubtype === 'ai') return project.folder.includes('图片类 / IP玩偶 / ai合成 / ');
     if (imageSubtype === 'real') return project.folder.includes('图片类 / IP玩偶 / 实拍类 / ');
     return project.folder.includes('图片类 / IP玩偶');
-  });
+  }), [category, imageBranch, imageSubtype]);
+  const seriesItems = useMemo(() => visible.map((project, index) => ({ id: project.id, index, src: project.image, title: project.title, label: '查看' + project.title + '图库', count: project.images?.length })), [visible]);
   return <section className="works section-pad" id="work" aria-labelledby="works-title">
     <SectionHeading number="03" label="SELECTED WORKS" title={<span id="works-title">把热爱，<br />拍成作品。</span>}><div className="work-intro"><p>来自素材库的完整作品系列。<br />图片、包装、IP 与动态影像，按文件夹分类整理。</p><span className="mono">MATERIAL ARCHIVE / UPDATED 2026</span></div></SectionHeading>
     <div className="work-filter" role="tablist" aria-label="作品分类">{categories.map(item => <button type="button" role="tab" id={`tab-${item.id}`} aria-selected={category === item.id} aria-controls="work-grid" key={item.id} onClick={() => setCategory(item.id)} tabIndex={category === item.id ? 0 : -1} className={category === item.id ? 'selected' : ''}><span>{item.label}</span><sup className="mono">{projects.filter(project => project.category === item.id).length.toString().padStart(2, '0')}</sup></button>)}</div>
     {category === 'images' && <ImageHierarchy projects={projects} branch={imageBranch} subtype={imageSubtype} setBranch={setImageBranch} setSubtype={setImageSubtype} />}
-    <div className="sample-note"><span className="sample-dot" /> 图片系列沿横向卡带循环；点击系列查看堆叠轮播，点击图片查看无裁切原图。</div>
-    <div className={`work-grid ${category === 'images' ? 'work-grid--image-ribbon' : ''}`} id="work-grid" role="tabpanel" aria-labelledby={`tab-${category}`}><div className="sr-only" aria-live="polite">当前显示 {visible.length} 个系列</div>{category === 'images' ? <div className="image-ribbon-track">{visible.concat(visible).map((project, index) => <WorkCard project={project} onSelect={setSelected} ribbonIndex={index} duplicate={index >= visible.length} key={`${project.id}-${index}`} />)}</div> : visible.map(project => <WorkCard project={project} onSelect={setSelected} key={project.id} />)}</div>
+    <div className="sample-note"><span className="sample-dot" /> 所有图片轮播保持相同速度；支持拖动、滚轮与手指滑动，点击整张图片可放大查看。</div>
+    <div className={`work-grid ${category === 'images' ? 'work-grid--image-ribbon' : ''}`} id="work-grid" role="tabpanel" aria-labelledby={`tab-${category}`}><div className="sr-only" aria-live="polite">当前显示 {visible.length} 个系列</div>{category === 'images' ? <LoopGallery key={category + imageBranch + imageSubtype} items={seriesItems} onOpen={index => setSelected(visible[index])} suspended={!!selected} /> : visible.map(project => <WorkCard project={project} onSelect={setSelected} key={project.id} />)}</div>
     <div className="work-bottom mono"><span>GOOD THINGS COME FROM CURIOSITY.</span><span>MORE STORIES TO COME <b>✳</b></span></div>
     <dialog ref={dialog} className="project-dialog" onClose={() => setSelected(null)} onClick={event => { if (event.target === dialog.current) dialog.current.close(); }} aria-labelledby="dialog-title">{selected && <div className="dialog-content"><div className="dialog-top"><span className="mono">PROJECT / {selected.id} — {categories.find(item => item.id === selected.category).label}</span><button type="button" className="dialog-close" onClick={() => dialog.current.close()} aria-label="关闭作品预览">×</button></div><ProjectArtwork project={selected} inDialog onOpenOriginal={index => setLightbox({ project: selected, index })} /><div className="dialog-details"><h3 id="dialog-title">{selected.title}</h3><p>{selected.description}</p><span className="mono">{selected.year} / 素材库作品</span></div>{lightbox && <div className="original-lightbox" role="dialog" aria-modal="true" aria-label={`${lightbox.project.title}原图查看`} onClick={event => { if (event.target === event.currentTarget) setLightbox(null); }}><div className="original-lightbox-content"><div className="original-lightbox-top"><span className="mono">ORIGINAL / {String(lightbox.index + 1).padStart(2, '0')} / {String((lightbox.project.originalImages || lightbox.project.images).length).padStart(2, '0')}</span><button type="button" className="dialog-close" onClick={() => setLightbox(null)} aria-label="关闭原图">×</button></div><button type="button" className="original-lightbox-nav original-lightbox-prev" onClick={() => moveLightbox(-1)} aria-label="上一张原图"><Arrow className="reverse" /></button><img src={(lightbox.project.originalImages || lightbox.project.images)[lightbox.index]} alt={`${lightbox.project.title}第 ${lightbox.index + 1} 张原图`} /><button type="button" className="original-lightbox-nav original-lightbox-next" onClick={() => moveLightbox(1)} aria-label="下一张原图"><Arrow /></button><div className="original-lightbox-caption"><h3>{lightbox.project.title}</h3><p>原始比例 · 无裁切 · 点击左右箭头浏览</p></div></div></div>}</div>}</dialog>
   </section>;
@@ -327,4 +309,3 @@ export default function App() {
   }, []);
   return <><CharacterClip /><a href="#main" className="skip-link">跳到主要内容</a><div className="site-shell"><Sidebar active={active} /><div className="mechanical-rail" aria-hidden="true"><span /><b>VISUAL COMMUNICATION SYSTEM</b><span /></div><main id="main"><Hero /><Ticker /><About /><Skills /><Works /><Contact /></main></div></>;
 }
-
